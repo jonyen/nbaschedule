@@ -75,7 +75,8 @@ for game in x['games']:
     if home in johnnys and away in johnnys:
       stat = "-" 
       johnnyguaranteed += 1
-    print game['scheduled'] + " " + home + " " + away + " " + stat
+    if stat == "":
+      print game['scheduled'].split("T")[0] + " " + home + " " + away + " " + stat
     if home == 'MIL':
       buckshome += 1
 #      print home + " " + away
