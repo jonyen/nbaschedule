@@ -28,22 +28,26 @@ for conference in standings['conferences']:
     for team in division['teams']:
       print team['name'] + " " + str(team['wins'])
       if team['name'] in mine_west:
-        prev = client.GetCellsFeed(doc_key, 5, 'R' + str(4 + mine_west.index(team['name'])) + 'C6').cell.text
-	print "prev: " + team['name'] + ' ' + prev
-        client.UpdateCell(4 + mine_west.index(team['name']), 7, str(team['wins'] - int(prev)), doc_key, 5)
+        prev1 = client.GetCellsFeed(doc_key, 5, 'R' + str(4 + mine_west.index(team['name'])) + 'C7').cell.text
+        prev2 = client.GetCellsFeed(doc_key, 5, 'R' + str(4 + mine_west.index(team['name'])) + 'C8').cell.text
+#	print "prev: " + team['name'] + ' ' + prev
+        client.UpdateCell(4 + mine_west.index(team['name']), 9, str(team['wins'] - int(prev1) - int(prev2)), doc_key, 5)
       if team['name'] in mine_east:
-        prev = client.GetCellsFeed(doc_key, 5, 'R' + str(13 + mine_east.index(team['name'])) + 'C6').cell.text
-	print "prev: " + team['name'] + ' ' + prev
-        client.UpdateCell(13 + mine_east.index(team['name']), 7, str(team['wins'] - int(prev)), doc_key, 5)
+        prev1 = client.GetCellsFeed(doc_key, 5, 'R' + str(13 + mine_east.index(team['name'])) + 'C7').cell.text
+        prev2 = client.GetCellsFeed(doc_key, 5, 'R' + str(13 + mine_east.index(team['name'])) + 'C8').cell.text
+#	print "prev: " + team['name'] + ' ' + prev
+        client.UpdateCell(13 + mine_east.index(team['name']), 9, str(team['wins'] - int(prev1) - int(prev2)), doc_key, 5)
       if team['name'] in johnny_west:
-        prev = client.GetCellsFeed(doc_key, 5, 'R' + str(4 + johnny_west.index(team['name'])) + 'C3').cell.text
-	print "prev: " + team['name'] + ' ' + prev
-        client.UpdateCell(4 + johnny_west.index(team['name']), 4, str(team['wins'] - int(prev)), doc_key, 5)
+        prev1 = client.GetCellsFeed(doc_key, 5, 'R' + str(4 + johnny_west.index(team['name'])) + 'C3').cell.text
+        prev2 = client.GetCellsFeed(doc_key, 5, 'R' + str(4 + johnny_west.index(team['name'])) + 'C4').cell.text
+#	print "prev: " + team['name'] + ' ' + prev
+        client.UpdateCell(4 + johnny_west.index(team['name']), 5, str(team['wins'] - int(prev1) - int(prev2)), doc_key, 5)
       if team['name'] in johnny_east:
-        prev = client.GetCellsFeed(doc_key, 5, 'R' + str(13 + johnny_east.index(team['name'])) + 'C3').cell.text
-	print "prev: " + team['name'] + ' ' + prev
-        client.UpdateCell(13 + johnny_east.index(team['name']), 4, str(team['wins'] - int(prev)), doc_key, 5)
+        prev1 = client.GetCellsFeed(doc_key, 5, 'R' + str(13 + johnny_east.index(team['name'])) + 'C3').cell.text
+        prev2 = client.GetCellsFeed(doc_key, 5, 'R' + str(13 + johnny_east.index(team['name'])) + 'C4').cell.text
+#	print "prev: " + team['name'] + ' ' + prev1
+        client.UpdateCell(13 + johnny_east.index(team['name']), 5, str(team['wins'] - int(prev1) - int(prev2)), doc_key, 5)
 
-client.UpdateCell(3, 9, datetime.datetime.now().strftime("Last updated: %c"), doc_key, 5)
+client.UpdateCell(3, 10, datetime.datetime.now().strftime("Last updated: %c"), doc_key, 5)
 
 #print client.GetCellsFeed(doc_key, 5, "R1C1")
